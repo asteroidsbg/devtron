@@ -4,9 +4,10 @@
   "description": "Electron DevTools Extension",
   "main": "./api.js",
   "scripts": {
-    "prepublish": "browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
+    "prepublish": "npm run snyk-protect; browserify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js",
     "start": "watchify lib/*.js -o out/index.js --ignore-missing --entry lib/index.js --verbose",
-    "test": "mocha test/unit/*-test.js test/integration/*-test.js && standard"
+    "test": "mocha test/unit/*-test.js test/integration/*-test.js && standard",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -40,11 +41,13 @@
   },
   "dependencies": {
     "highlight.js": "^9.3.0",
-    "humanize-plus": "^1.8.1"
+    "humanize-plus": "^1.8.1",
+    "snyk": "^1.134.2"
   },
   "standard": {
     "ignore": [
       "/out/index.js"
     ]
-  }
+  },
+  "snyk": true
 }
